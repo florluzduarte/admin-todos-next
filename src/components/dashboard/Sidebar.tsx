@@ -2,6 +2,30 @@ import Image from "next/image";
 import Link from "next/link";
 import { CiLogout } from "react-icons/ci";
 import { SidebarItem } from "..";
+import { ItemProps } from "./SidebarItem";
+import {
+  IoCalendarOutline,
+  IoCheckboxOutline,
+  IoListOutline,
+} from "react-icons/io5";
+
+const menuItems: ItemProps[] = [
+  {
+    icon: <IoCalendarOutline />,
+    title: "Dashboard",
+    path: "/dashboard",
+  },
+  {
+    icon: <IoCheckboxOutline />,
+    title: "REST todos",
+    path: "/dashboard/rest-todos",
+  },
+  {
+    icon: <IoListOutline />,
+    title: "Server actions",
+    path: "/dashboard/server-todos",
+  },
+];
 
 export const Sidebar = () => {
   return (
@@ -12,8 +36,8 @@ export const Sidebar = () => {
             <Link href="/dashboard" title="home">
               <Image
                 src="https://tailus.io/sources/blocks/stats-cards/preview/images/logo.svg"
-                width={60}
-                height={60}
+                width={128}
+                height={36}
                 className="w-32"
                 alt="tailus logo"
               />
@@ -24,8 +48,8 @@ export const Sidebar = () => {
             <Image
               src="https://tailus.io/sources/blocks/stats-cards/preview/images/second_user.webp"
               alt=""
-              width={60}
-              height={60}
+              width={112}
+              height={112}
               className="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28"
             />
             <h5 className="hidden mt-4 text-xl font-semibold text-gray-600 lg:block">
@@ -35,7 +59,9 @@ export const Sidebar = () => {
           </div>
 
           <ul className="space-y-2 tracking-wide mt-8">
-            <SidebarItem />
+            {menuItems.map((item: ItemProps) => (
+              <SidebarItem key={item.path} {...item} />
+            ))}
           </ul>
         </div>
 

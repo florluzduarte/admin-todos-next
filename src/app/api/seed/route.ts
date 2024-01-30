@@ -18,8 +18,6 @@ export async function GET(request: Request) {
         ]
     })
 
-    console.log(todo);
-
     return NextResponse.json({
         message: "Seed executed"
     })
