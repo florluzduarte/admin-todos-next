@@ -47,7 +47,7 @@ export async function POST(request: Request) {
     try {
         const { description, complete, ...res } = await postYupSchema.validate(await request.json());
 
-        if (res) {
+        if (Object.keys(res).length) {
             return NextResponse.json({
                 msg: "Las únicas propiedades permitidas son description y complete",
                 method: "POST",
@@ -66,6 +66,24 @@ export async function POST(request: Request) {
         return NextResponse.json({
             msg: error,
             method: "POST"
+        }, { status: 400 })
+    }
+}
+
+export async function DELETE(request: Request) {
+
+    try {
+        await prisma.todo.deleteMany({ where: { complete: true } });
+
+        return NextResponse.json({
+            msg: "ok",
+            method: "DELETE",
+        }, { status: 200 })
+
+    } catch (error) {
+        return NextResponse.json({
+            msg: error,
+            method: "DELETE",
         }, { status: 400 })
     }
 }

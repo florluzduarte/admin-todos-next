@@ -22,7 +22,7 @@ export async function GET(request: Request, segments: Segments) {
     }
 
     return NextResponse.json({
-        msg: "Hola Mundo",
+        msg: "ok",
         method: "GET",
         data: todoById,
     })
