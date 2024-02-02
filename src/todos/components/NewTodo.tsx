@@ -2,11 +2,22 @@
 
 import { FormEvent, useState } from "react";
 import { IoTrashOutline } from "react-icons/io5";
-import * as todosApi from "@/todos/helpers/todosHelper";
-import { useRouter } from "next/navigation";
+
+// -----------
+// IMPORTANT: Importaciones necesarias para helpers y RESTapi
+// import * as todosApi from "@/todos/helpers/todosHelper";
+// import { useRouter } from "next/navigation";
+// -----------
+
+// -----------
+// IMPORTANT: Importacion para Server Actions
+import { addTodo, deleteTodo } from "../actions/todos-actions";
+// -----------
 
 export const NewTodo = () => {
-  const router = useRouter();
+  // Se usa para trabajar con RESTapi y handlers
+  // const router = useRouter();
+
   const [description, setDescription] = useState("");
 
   const handleInputChange = (event: any) => {
@@ -16,14 +27,17 @@ export const NewTodo = () => {
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     if (description.trim().length === 0) return;
-    await todosApi.createTodo(description);
+    await addTodo(description);
     setDescription("");
-    router.refresh();
+    //router.refresh();
   };
 
   const handleDelete = async () => {
-    await todosApi.deleteCompletedTodos();
-    router.refresh();
+    // Para RESTapi y handlers
+    //await todosApi.deleteCompletedTodos();
+    //router.refresh();
+
+    deleteTodo();
   };
 
   return (
