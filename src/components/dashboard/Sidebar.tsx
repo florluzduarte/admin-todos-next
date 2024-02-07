@@ -6,6 +6,7 @@ import { ItemProps } from "./SidebarItem";
 import {
   IoCalendarOutline,
   IoCheckboxOutline,
+  IoCodeWorking,
   IoListOutline,
 } from "react-icons/io5";
 
@@ -24,6 +25,11 @@ const menuItems: ItemProps[] = [
     icon: <IoListOutline />,
     title: "Server actions",
     path: "/dashboard/server-todos",
+  },
+  {
+    icon: <IoCodeWorking />,
+    title: "Cookies",
+    path: "/dashboard/cookies",
   },
 ];
 
