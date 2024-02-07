@@ -4,6 +4,7 @@ import { CiLogout } from "react-icons/ci";
 import { SidebarItem } from "..";
 import { ItemProps } from "./SidebarItem";
 import {
+  IoBasketOutline,
   IoCalendarOutline,
   IoCheckboxOutline,
   IoCodeWorking,
@@ -31,6 +32,11 @@ const menuItems: ItemProps[] = [
     title: "Cookies",
     path: "/dashboard/cookies",
   },
+  {
+    icon: <IoBasketOutline />,
+    title: "Productos",
+    path: "/dashboard/products",
+  },
 ];
 
 export const Sidebar = () => {
@@ -53,10 +59,10 @@ export const Sidebar = () => {
           <div className="mt-8 text-center">
             <Image
               src="https://tailus.io/sources/blocks/stats-cards/preview/images/second_user.webp"
-              alt=""
-              width={112}
-              height={112}
-              className="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28"
+              alt="Profile picture"
+              width={80}
+              height={80}
+              className="w-10 h-10 m-auto rounded-full object-cover lg:w-20 lg:h-20"
             />
             <h5 className="hidden mt-4 text-xl font-semibold text-gray-600 lg:block">
               Cynthia J. Watts
