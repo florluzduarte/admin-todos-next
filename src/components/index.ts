@@ -1,4 +1,5 @@
 // Dashboard
+export { LogoutButton } from "./dashboard/LogoutButton";
 export { Sidebar } from "./dashboard/Sidebar";
 export { SidebarItem } from "./dashboard/SidebarItem";
 export { TabBar } from "./dashboard/TabBar";

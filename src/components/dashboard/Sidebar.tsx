@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CiLogout } from "react-icons/ci";
-import { SidebarItem } from "..";
+import { LogoutButton, SidebarItem } from "..";
 import { ItemProps } from "./SidebarItem";
 import {
   IoBasketOutline,
@@ -9,6 +8,7 @@ import {
   IoCheckboxOutline,
   IoCodeWorking,
   IoListOutline,
+  IoPersonOutline,
 } from "react-icons/io5";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
@@ -40,6 +40,11 @@ const menuItems: ItemProps[] = [
     title: "Productos",
     path: "/dashboard/products",
   },
+  {
+    icon: <IoPersonOutline />,
+    title: "Perfil",
+    path: "/dashboard/profile",
+  },
 ];
 
 export const Sidebar = async () => {
@@ -65,7 +70,7 @@ export const Sidebar = async () => {
             </Link>
           </div>
 
-          <div className="mt-8 text-center">
+          <div className="mt-4 text-center">
             <Image
               src={
                 session.user?.image ??
@@ -82,18 +87,15 @@ export const Sidebar = async () => {
             <span className="hidden text-gray-400 lg:block">Admin</span>
           </div>
 
-          <ul className="space-y-2 tracking-wide mt-8">
+          <ul className="space-y-2 tracking-wide mt-4">
             {menuItems.map((item: ItemProps) => (
               <SidebarItem key={item.path} {...item} />
             ))}
           </ul>
         </div>
 
-        <div className="px-6 -mx-6 pt-4 flex justify-between items-center border-t">
-          <button className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
-            <CiLogout />
-            <span className="group-hover:text-gray-700">Logout</span>
-          </button>
+        <div className="px-6 -mx-6 pt-2 flex justify-between items-center border-t">
+          <LogoutButton />
         </div>
       </aside>
     </>
