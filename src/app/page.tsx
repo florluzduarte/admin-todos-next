@@ -4,9 +4,9 @@ export default function Home() {
 
   redirect("/dashboard");
 
-  return (
-    <>
-      <span className="text-5xl">Hola Mundo</span>
-    </>
-  );
+  // return (
+  //   <>
+  //     <span className="text-5xl">Hola Mundo</span>
+  //   </>
+  // );
 }

@@ -84,7 +84,13 @@ export const Sidebar = async () => {
             <h5 className="hidden mt-4 text-xl font-semibold text-gray-600 lg:block">
               {session.user?.name ?? "No name"}
             </h5>
-            <span className="hidden text-gray-400 lg:block">Admin</span>
+            <span className="hidden text-gray-400 lg:flex lg:gap-2 lg:justify-center">
+              {
+                session.user?.roles?.map((role) => (
+                  <p key={role}>{role.charAt(0).toUpperCase() + role.slice(1)}</p>
+                ))
+              }
+            </span>
           </div>
 
           <ul className="space-y-2 tracking-wide mt-4">

@@ -55,7 +55,7 @@ export async function PUT(request: Request, segments: Segments) {
         });
 
         return NextResponse.json({
-            msg: "Hola Mundo",
+            msg: "Todo actualizado",
             method: "GET",
             data: updatedTodo,
         })
