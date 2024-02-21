@@ -1,6 +1,7 @@
 import { NextResponse, NextRequest } from 'next/server'
 import prisma from '@/lib/prisma'
 import * as yup from "yup";
+import { getUserSessionServer } from '@/auth/actions/auth-actions';
 
 export async function GET(request: Request) {
 
@@ -44,6 +45,14 @@ const postYupSchema = yup.object({
 
 export async function POST(request: Request) {
 
+    const user = await getUserSessionServer();
+    if (!user) {
+        return NextResponse.json({
+            msg: "No autorizado",
+            method: "POST"
+        }, { status: 401 });
+    }
+
     try {
         const { description, complete, ...res } = await postYupSchema.validate(await request.json());
 
@@ -54,7 +63,7 @@ export async function POST(request: Request) {
             }, { status: 400 })
         }
 
-        const newTodo = await prisma.todo.create({ data: { description, complete } })
+        const newTodo = await prisma.todo.create({ data: { description, complete, userId: user!.id } })
 
         return NextResponse.json({
             msg: "ok",

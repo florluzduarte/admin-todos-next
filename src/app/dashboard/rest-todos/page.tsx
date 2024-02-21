@@ -3,6 +3,7 @@ export const revalidate = 0;
 
 import { NewTodo, TodosGrid } from "@/todos";
 import prisma from "../../../lib/prisma";
+import { getUserSessionServer } from "@/auth/actions/auth-actions";
 
 export const metadata = {
   title: "Lista de TODOs",
@@ -10,7 +11,13 @@ export const metadata = {
 };
 
 export default async function RestTodosPage() {
-  const todos = await prisma.todo.findMany({ orderBy: { description: "asc" } });
+
+  const user = await getUserSessionServer();
+
+  const todos = await prisma.todo.findMany({
+    where: { userId: user?.id },
+    orderBy: { description: "asc" }
+  });
 
   return (
     <div>
